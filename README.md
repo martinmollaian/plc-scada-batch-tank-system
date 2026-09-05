@@ -1,30 +1,14 @@
 # plc-scada-batch-tank-system
-# Industrial Batch Tank Automation System
-
-A complete PLC-SCADA automation system developed for a simulated industrial batch tank process.
-
-The project combines PLC-based process control, process simulation, SCADA supervision, historical data acquisition, production-cycle logging and KPI visualization.
 
 ---
 
 ## System Overview
+A complete PLC-SCADA automation system developed for a simulated industrial batch tank process.
 
 The system is designed as a modular automation architecture integrating a Siemens S7-1500 PLC with an Ignition Perspective SCADA application.
-# Industrial Batch Tank Automation System
-
-A complete PLC-SCADA automation system developed for a simulated industrial batch tank process.
 
 The project combines PLC-based process control, process simulation, SCADA supervision, historical data acquisition, production-cycle logging and KPI visualization.
 
----
-
-## System Overview
-
-The system is designed as a modular automation architecture integrating a Siemens S7-1500 PLC with an Ignition Perspective SCADA application.
-
-<p align="center">
-  <img src="screenshots/overview.PNG" width="800"/>
-</p>
 
 ## System Architecture
 
@@ -57,8 +41,98 @@ The control system manages the complete automatic batch sequence, including proc
 The process control is implemented using a dedicated State Machine for managing the different phases of the batch process.
 
 <p align="center">
-  <img src="screenshots/plc/state_machine.png" width="850"/>
+  <img src="screenshots/StateMachine.jpeg" width="850"/>
 </p>
 
 ### Fault Handling & Recovery
+The PLC includes fault detection based on actuator feedback and timeout conditions, together with recovery logic to safely return the process to a defined state.
 
+---
+# Process Simulation
+
+A dedicated Function Block was developed in TIA Portal to simulate the behaviour of the physical process.
+
+The simulation allows the PLC control logic to be tested without physical hardware.
+
+The simulated process includes:
+
+- Tank level dynamics
+- Temperature dynamics
+- Actuator feedback delays
+- Sensor and actuator faults
+
+---
+# SCADA – Ignition Perspective
+
+Ignition Perspective provides the supervisory layer of the system, allowing operators to monitor and interact with the simulated process.
+
+The SCADA application includes:
+
+- Process visualization
+- Operator commands
+- Recipe management
+- Alarm monitoring
+- Real-time trends
+- Historical data visualization
+
+### Process Overview
+
+<p align="center">
+  <img src="screenshots/overview.PNG" width="850"/>
+</p>
+
+### Operator Commands
+
+<p align="center">
+  <img src="screenshots/commands.PNG" width="600"/>
+</p>
+
+### Alarms
+
+<p align="center">
+  <img src="screenshots/Alarm Table.PNG" width="850"/>
+</p>
+
+---
+
+# Production Data & KPI
+
+Production cycles are logged in a SQLite database and used to generate production KPIs.
+
+The production database records information such as:
+
+- Cycle ID
+- Recipe ID
+- Start and end time
+- Cycle duration
+- Cycle result
+- Alarm code
+
+The SCADA dashboard provides a visual overview of production performance and cycle statistics.
+
+<p align="center">
+  <img src="screenshots/Dashboard.PNG" width="850"/>
+</p>
+
+---
+
+# Historian
+
+Ignition Historian is used to store and visualize historical process variables such as:
+
+- Tank level
+- Tank temperature
+
+Historical data can be analyzed through the SCADA trend interface.
+
+### Trends
+
+<p align="center">
+  <img src="screenshots/Tank Temperature Trend.PNG" width="600"/>
+</p>
+
+<p align="center">
+  <img src="screenshots/TankLevel Trend.PNG" width="600"/>
+</p>
+
+---
